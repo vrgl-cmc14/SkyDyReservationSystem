@@ -1,0 +1,2563 @@
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #11111161; 
+    z-index: 99999; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.2s ease; 
+}
+
+.element {
+  animation-name: bounceAnimation;
+  animation-duration: 0.9s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+}
+
+.loader-logo {
+    width: 120px;
+    animation: bounceAnimation 0.9s ease infinite; 
+}
+
+@keyframes bounceAnimation {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+
+.fade-out-loader {
+    opacity: 0;
+    pointer-events: none; 
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: #111;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Ensure the parent container can hold absolute positioned items */
+.your-carousel-container-class { /* Replace with your actual container class */
+    position: relative; 
+}
+
+/* Floating Arrow Buttons */
+.popup-nav-arrow {
+    position: absolute;
+    top: 50%; /* Pushes to the middle */
+    font-family: sans-serif !important; 
+    font-weight: bold !important;
+    transform: translateY(-50%); /* Centers perfectly */
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black */
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.popup-nav-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.prev-arrow {
+    left: 10px; /* Floats on the left edge */
+}
+
+.next-arrow {
+    right: 10px; /* Floats on the right edge */
+}
+
+/* Ensure the wrapper is the relative parent */
+.card-carousel-wrapper {
+    position: relative !important;
+}
+
+/* Position the buttons in the vertical middle */
+.popup-nav-arrow {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    color: white !important;
+    border: none !important;
+    width: 35px !important;
+    height: 35px !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    z-index: 20 !important; /* Higher than the image */
+    
+    font-family: sans-serif !important;
+    font-weight: bold !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.prev-arrow {
+    left: 10px !important; /* Move to the left edge */
+}
+
+.next-arrow {
+    right: 10px !important; /* Move to the right edge */
+}
+
+#bg-slider {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1; 
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1s ease-in-out; 
+}
+
+ .container {
+    display: flex;
+    min-height: 100vh;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: smoothLoad 0.4s;
+    overflow: hidden;
+} 
+
+.sidebar {
+    font-family: "Google Sans Flex";
+    width: 200px;
+    background-color: #3b71cab3;
+    color: white;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+    transition: all 0.3s ease;
+    overflow-x: hidden; 
+    white-space: nowrap; 
+    flex-shrink: 0; 
+}
+
+.menu-icon {
+    font-size: 30px;
+    padding: 0 20px;
+    cursor: pointer;
+    color: white;
+    margin-bottom: 10px;
+    width: 60px;         
+    text-align: center;  
+    padding: 0;          
+    flex-shrink: 0;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 10px 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 15vh;
+    transition: opacity 0.3s ease;
+  }
+
+.nav-links li {
+    position: relative;
+    padding: 4px 0;
+}
+
+.nav-links li a {
+    display: flex;
+    align-items: center;
+    padding: 13px 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 40px 0 0 40px;
+    margin-left: 0;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+    width: 200px;         
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nav-links li a:hover {
+    background-color: white;
+    margin-left: 15px;
+    color: #3b71ca;
+}
+
+.nav-links li a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 40px 0 0 40px;
+    background-color: transparent;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.nav-links li a:hover::before {
+    transform: scaleX(1);
+}
+
+.nav-links li a:hover ~ .curve-top,
+.nav-links li:hover .curve-top {
+    opacity: 1;
+}
+
+.curve-top,
+.curve-bottom {
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.curve-top {
+    top: -30px;
+    border-radius: 0 0 25px 0;
+    box-shadow: transparent;
+}
+
+.curve-bottom {
+    bottom: -30px;
+    border-radius: 0 25px 0 0;
+    box-shadow: transparent;
+}
+
+.nav-links li:hover .curve-top,
+.nav-links li:hover .curve-bottom {
+    opacity: 1;
+}
+
+.logo-container {
+    text-align: center;
+    z-index: 3;
+}
+
+.footer-logo {
+    width: 80px;
+    margin: 20px auto;
+    display: flex;
+    cursor: pointer;
+}
+
+.main-content::-webkit-scrollbar,
+.modal-box::-webkit-scrollbar,
+.book-now-card::-webkit-scrollbar,
+.home-content-stack::-webkit-scrollbar {
+    display: none;
+}
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start; 
+    padding: 150px 40px 60px 40px;
+    gap: 60px;
+    background: transparent;
+    position: relative;
+    height: 100vh;            
+    overflow-y: auto; 
+    overflow-x: hidden;
+    scrollbar-width: none;
+    flex-shrink: 0;
+}
+
+/* SPACES & WORKSPACES */
+.focus-pod-card,
+.power-bar-card,
+.design-dock-card,
+.think-spot-card,
+.collab-nook-card,
+.flow-row-card,
+.sky-pod-card,
+.sky-circle-card {
+    width: 450px;            
+    height: 280px;      
+    min-width: 500px;     
+    background-color: #fffffbe7;
+    border-radius: 30px;
+    overflow: hidden;
+    border: none;
+    transition: all 0.3s ease;
+    position: relative !important;
+    z-index: 1 !important;
+    cursor: pointer;
+}
+
+.focus-pod-card:hover,
+.power-bar-card:hover,
+.design-dock-card:hover,
+.think-spot-card:hover,
+.collab-nook-card:hover,
+.flow-row-card:hover,
+.sky-pod-card:hover,
+.sky-circle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.table-image {
+    position: absolute;
+    top: 5%;
+    left: 10px;          
+    width: 45%;          
+    height: 90%;         
+    object-fit: contain; 
+    transition: transform 0.4s ease;
+    animation: imageFadeIn 1s ease-out forwards;
+    z-index: 2;          
+}
+
+@keyframes imageFadeIn {
+    0% { opacity: 0; transform: translateX(0); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+.booking-spaces-title,
+.collabnook-booking-spaces-title,
+.focuspod-booking-spaces-title,
+.powerbar-booking-spaces-title,
+.thinkspot-booking-spaces-title,
+.flowrow-booking-spaces-title,
+.skycircle-booking-spaces-title,
+.designdock-booking-spaces-title,
+.skypod-booking-spaces-title {
+    position: absolute;
+    top: 20%;
+    font-family: "Google Sans Flex";
+    font-size: 30px;
+    font-weight: 650;
+    word-spacing: 0px; 
+    letter-spacing: -0.5px;
+    color: rgb(8, 6, 4);
+    text-shadow: 2px 4px 45px rgba(0, 0, 0, 0.282);
+    z-index: 3;
+}
+
+.booking-spaces-title { left: 52%; }
+.collabnook-booking-spaces-title { left: 51%; }
+.focuspod-booking-spaces-title { left: 54.5%; }
+.powerbar-booking-spaces-title { left: 54.5%; }
+.thinkspot-booking-spaces-title { left: 54.5%; }
+.flowrow-booking-spaces-title { left: 55%; }
+.skycircle-booking-spaces-title { left: 56%; }
+.designdock-booking-spaces-title { left: 52%;}
+.skypod-booking-spaces-title { left: 60%; }
+
+.booking-space-price,
+.skypod-booking-spaces-price,
+.skycircle-booking-spaces-price {
+    position: absolute;
+    top: 33%;
+    font-family: "Google Sans Flex";
+    font-size: 30px;
+    font-weight: 500;
+    word-spacing: 1px; 
+    letter-spacing: 2px;
+    color: rgb(8, 6, 4);
+    text-shadow: 2px 4px 45px rgba(0, 0, 0, 0.282);
+    z-index: 3;
+}
+
+.booking-space-price { left: 59%; }
+.skypod-booking-spaces-price { left: 59%; }
+.skycircle-booking-spaces-price { left: 57%; }
+
+.book-now-card {   
+    width: 40%;          
+    height: 50px; 
+    top: 55%;  
+    left: 51%;   
+    background-color: #5586dbc2;
+    border-radius: 12px;
+    overflow: hidden;
+    border: none;
+    transition: all 0.3s ease;
+    position: absolute;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.078); 
+    cursor: pointer;
+    z-index: 50 !important;
+}
+
+.book-now-text {
+    position: absolute;
+    font-family: "Google Sans Flex";
+    top: 31%;
+    left: 31%;
+    font-weight: 650;
+    color: #0c1018;
+    text-decoration: none !important;
+    z-index: 51;
+}
+
+.book-now-card:hover { background-color: #253e68; }
+.book-now-card:hover .book-now-text { color: #b3ccf6; }
+
+.hero-btn-group {
+    display: flex !important;
+    flex-direction: row !important;        
+    justify-content: center !important;   
+    align-items: center !important;
+    gap: 20px !important;                 
+    width: 100% !important;
+    margin-top: 30px !important;          
+    margin-bottom: 10px !important;
+}
+
+.homepage-book-now-card,
+.homepage-contact-now-card {
+    display: inline-flex !important;      
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important; /* Proper text/arrow spacing on desktop */
+    width: 190px !important;
+    height: 55px !important;
+    min-height: 55px !important;
+    padding: 0 !important;
+    margin: 100px 30px 0 30px;              
+    background-color: #c4eeff2d;
+    border: 2px solid #feffed;
+    color: #fffeec !important;
+    font-family: "Google Sans Flex", sans-serif;
+    font-size: 18px;
+    font-weight: 650;
+    text-decoration: none !important; 
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.267);
+    transition: all 0.3s ease;
+}
+
+.homepage-book-now-card:hover,
+.homepage-contact-now-card:hover {
+    color: rgb(28, 28, 28) !important;
+    background-color: #fdfbd9;
+    border: none;
+    transform: translateY(-4px); 
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); 
+}
+
+.btn-arrow {
+    margin-left: 0 !important;
+    font-weight: bold; 
+    display: inline-block;
+}
+
+.learn-more-text {
+    position: absolute;
+    font-family: "roboto";
+    top: 77%;
+    left: 64.5%;
+    font-size: 14px;
+    font-weight: 500;
+    color: #4d4d4d;
+    z-index: 3;
+}
+
+.header {
+    font-family: "Roboto", sans-serif;
+    background-color: #3b71ca;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.map-container {
+    position: relative;
+    flex: 1;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* Collapsed state */
+.sidebar.collapsed { width: 60px; background-color: rgba(59, 114, 202, 0.333); }
+.sidebar.collapsed .nav-links { opacity: 0; pointer-events: none; }
+.sidebar.collapsed .logo-container { opacity: 0; pointer-events: none; }
+.sidebar { transition: width 0.3s ease; }
+.nav-links { transition: opacity 0.05s ease; }
+.logo-container { transition: opacity 0.3s ease; }
+
+.hero-section {
+    width: 100%;
+    padding-top: 5rem;       
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;    
+}
+
+.text-group { text-align: center; }
+
+.tagline {
+    font-family: "Sour Gummy";
+    font-size: 110px;
+    font-weight: 1000;
+    word-spacing: normal !important; /* Ensure desktop isn't squashed */
+    letter-spacing: 1.5px;
+    color: rgba(255, 250, 250, 0.922);
+    line-height: 0.8;
+    text-align: center;
+    text-shadow: 2px 4px 45px rgba(0,0,0,0.4);
+}
+
+.location {
+    font-family: "Roboto";
+    font-size: 17px;
+    letter-spacing: 5px;
+    word-spacing: normal; 
+    color: white;
+    font-weight: normal;
+    font-variant: normal;
+    margin-top: 30px; 
+}
+
+/* GLOBAL INTERCEPTOR INJECTIONS: Stops invisible container nodes absorbing click frames */
+.card-carousel-container {
+    position: relative !important;
+    z-index: 5 !important; 
+    pointer-events: none !important; 
+}
+
+.card-nav-dot {
+    pointer-events: auto !important; 
+}
+
+/* ==========================================================================
+   GLOBAL / DESKTOP RESPONSIVE MODAL OVERLAY & CAROUSEL
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    display: none; 
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box {
+    background-color: #fffffbf4 !important;
+    width: 90% !important;
+    max-width: 650px !important; 
+    height: auto !important;
+    max-height: 85vh !important;
+    border-radius: 24px !important;
+    padding: 30px 40px !important; 
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    overflow-y: auto !important; 
+    overflow-x: hidden !important;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px; right: 30px;
+    font-size: 30px;
+    font-weight: bold ;
+    cursor: pointer;
+    z-index: 999;
+}
+.close-btn:hover { color: #e22232; }
+
+/* Structural Carousel Wrapper */
+.modal-carousel-container {
+    width: 100% !important;
+    margin: 30px 0 0 0 !important;
+    position: relative !important;
+    flex-shrink: 0 !important;
+}
+
+.card-carousel-track {
+    display: flex !important;
+    width: 100% !important;
+    height: 250px !important; /* Restored safe height to prevent ratio squishing */
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    border-radius: 16px !important;
+    scrollbar-width: none !important;
+}
+
+.card-carousel-track::-webkit-scrollbar {
+    display: none !important;
+}
+
+.card-carousel-track img {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    scroll-snap-align: start !important;
+    object-fit: cover !important; 
+}
+
+/* Navigation Indicator Rails */
+.card-carousel-nav {
+    display: flex !important;
+    column-gap: 0.6rem !important;
+    position: absolute !important;
+    bottom: 15px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 100 !important;
+}
+
+.card-nav-dot {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    background-color: #ffffff !important;
+    opacity: 0.4 !important;
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
+    cursor: pointer !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    pointer-events: auto !important;
+}
+
+.card-nav-dot.active {
+    opacity: 1 !important;
+    background-color: #3b71ca !important; 
+    transform: scale(1.25) !important;
+}
+
+/* Text Context Group Spacing Adjustments */
+.modal-content-group {
+    margin-top: 20px !important; 
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+}
+
+#modal-title {
+    font-family: 'Google Sans Flex', sans-serif !important; 
+    font-size: 36px !important; 
+    font-weight: 800 !important;
+    color: #0c1324 !important; 
+    margin: 0 !important;
+    letter-spacing: 1px !important;
+}
+
+#modal-price {
+    font-family: 'Roboto', sans-serif !important; 
+    font-size: 22px !important; 
+    font-weight: bold !important;
+    color: #3b71ca !important; 
+    margin: 0 0 5px 0 !important;
+}
+
+#modal-desc {
+    font-family: 'Roboto', sans-serif !important; 
+    font-size: 16px !important;
+    color: #444 !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+}
+
+/* ==========================================================================
+   GLOBAL PAGES & BOOKING LAYOUT
+   ========================================================================== */
+.bg-contact-container {
+    width: 100%;           
+    height: 100%; 
+    top: 40%; 
+    background: #ccccccbe;
+    position: absolute;
+}
+.main-contact-container {
+   background-color: #fffef5;          /* Matches your current off-white card color */
+    border-radius: 30px;                /* Smooth rounded corners from image_240960.jpg */
+    width: 100%;
+    max-width: 850px;                   /* Gives it a wide, elegant look like the photo */
+    height: auto;
+    max-height: 75vh;                   /* Prevents the card from spilling off the screen */
+    margin: 0 auto;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); /* Deep shadows to pop out from dark background */
+    
+    /* Enables scrolling INSIDE the white card if content gets long */
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;              /* Hides scrollbar on Firefox */
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+.main-contact-container::-webkit-scrollbar {
+    display: none;
+}
+
+.contact-us-text {
+   font-family: "Google Sans Flex", sans-serif;
+    color: white;                       /* Kept white as seen in image_240960.jpg */
+    font-size: 40px;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.contact-details {
+    display: flex;
+    flex-wrap: wrap;                    /* Side-by-side layout on desktop, wraps on mobile */
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+    margin-bottom: 30px;
+    text-align: left;
+    font-family: "Google Sans Flex", sans-serif;
+}
+
+.contact-info, 
+.operating-hours, 
+.social-medias {
+    flex: 1;
+    min-width: 200px;
+}
+.contact-info h3, 
+.operating-hours h3, 
+.social-medias h3 {
+    color: #253e68;                     /* Dark blue/grey headings for contrast on white */
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.contact-info p, 
+.operating-hours p{
+    color: #444;                        /* Easy to read text */
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.social-links-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;                           /* Clean spacing between each row */
+}
+
+.social-links-stack a {
+    color: #3b71ca;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    width: fit-content;
+    transition: color 0.2s ease;
+}
+
+.social-links-stack a:hover {
+    color: #253e68;
+    text-decoration: underline;
+}
+
+/* Visual separating element line */
+.contact-divider {
+    width: 100%;
+    border: none;
+    border-top: 2px dashed rgba(0, 0, 0, 0.1);
+    margin: 10px 0 30px 0;
+}
+
+/* Map labels and tewidth: 100%; */
+
+.gmaps {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative !important;      /* Explicit overrides for cleaner flow layout */
+    top: 0 !important;
+    left: 0 !important;
+}
+
+.gmaps iframe {
+    max-width: 100%;
+    border-radius: 16px;                /* Matches modern frame shapes */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+#back-arrow {
+    position: absolute; 
+    top: 27px;
+    right: 30px;
+    width: 55px;
+    height: auto;     
+    transition: transform 0.2s ease;
+    z-index: 100; 
+}
+
+#back-arrow:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+}
+
+.booking-calendar {
+    width: 450px;
+    max-width: 100%; 
+    background: #f1eee5;
+    padding: 20px;
+    padding-bottom: 30px !important;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    font-family: "Google Sans Flex";
+    position: relative; 
+    height: auto !important; 
+    min-height: 520px;
+    padding-bottom: 40px !important;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-header h2 { margin: 2px; font-size: 20px; color: #253e68; }
+.calendar-header button { border: none; background: none; font-size: 20px; cursor: pointer; }
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 5px;
+    text-align: center;
+}
+
+.day-name { font-weight: bold; color: #666; font-size: 14px; margin-bottom: 10px; }
+.calendar-days { display: contents; }
+
+.calendar-day {
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.calendar-day:hover { background-color: #f9eb85; }
+.calendar-day.selected { background-color: #6c93db; color: white; font-weight: bold; }
+
+.booking-wrapper {
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start;     
+    width: 100%;
+    height: 100%;            
+    gap: 40px;               
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.process-booking-button {
+    display: flex !important;     
+    justify-content: center !important;
+    align-items: center !important;
+    width: 250px !important;
+    height: 55px !important;
+    min-height: 55px !important;
+    padding: 0 !important;
+    margin: 35px auto 10px auto !important; 
+    background-color: #6c93db !important; 
+    color: #ffffff !important; 
+    border: none !important; 
+    font-family: "Google Sans Flex", sans-serif;
+    font-size: 16px; 
+    font-weight: 650;
+    text-decoration: none !important; 
+    word-spacing: normal !important; 
+    border-radius: 20px; 
+    box-shadow: 0 6px 20px rgba(108, 147, 219, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.process-booking-button:hover {
+    color: #1b1b1b !important; 
+    background-color: #f9eb85 !important; 
+    transform: translateY(-3px); 
+}
+
+.process-booking-button.disabled {
+    background-color: #a1a1a1 !important; 
+    color: #e0e0e0 !important;            
+    cursor: not-allowed !important;       
+    pointer-events: none !important;      
+    box-shadow: none !important;          
+    transform: none !important;            
+}
+
+.floor-plan-container {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    background: #f1eee5;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    font-family: "Google Sans Flex";
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative; 
+}
+
+.floor-plan-header {
+    background-color: #f1eee5; 
+    color: #253e68;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: "Google Sans Flex";
+}
+
+.floor-plan-map {
+    position: relative; 
+    width: 800px !important;
+    height: 550px !important; 
+    background-color: #f1eee5; 
+    border-radius: 8px;
+    margin-top: 70px;
+}
+
+.seat {
+    position: absolute;
+    background-color: #eab308; 
+    border: 2px solid #a16207; 
+    transition: all 0.2ms ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    font-weight: bold;
+    color: #4a3304; 
+    cursor: pointer !important;
+}
+
+.seat.selected {
+    background-color: #6c93db !important; 
+    border-color: #253e68 !important;     
+    color: #ffffff !important;            
+    transform: scale(1.1) !important;     
+    z-index: 500 !important;              
+}
+
+.seat.unavailable {
+    background-color: #f3f4f6 !important; 
+    border-color: #9ca3af !important;      
+    color: #6b7280 !important;             
+    cursor: not-allowed !important;
+    position: relative;
+    overflow: hidden;
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 6px,
+        rgba(17, 17, 17, 0.15) 6px,   
+        rgba(17, 17, 17, 0.15) 8px    
+    ) !important;
+}
+
+.pantry { width: 60px; height: 80px; }
+.cr { width: 190px; height: 80px; }
+.sky-line-room { width: 170px; height: 80px; border-radius: 12px; }
+.focus-pod-seat { width: 35px; height: 35px; border-radius: 12px; }
+.think-spot-seat { width: 40px; height: 40px; border-radius: 50%; }
+.design-dock-seat { width: 55px; height: 40px; border-radius: 12%; }
+.flow-row-seat { width: 30px; height: 38px; border-radius: 12%; }
+.power-bar-seat { width: 45px; height: 37px; border-radius: 12px; }
+.collab-nook-seat { width: 30px; height: 38px; border-radius: 12%; }
+.sky-pod-room { width: 45px; height: 37px; border-radius: 12px; }
+.sky-circle-room { width: 40px; height: 40px; border-radius: 12px; }
+.sky-den-room { width: 30px; height: 38px; border-radius: 12%; } 
+.sky-booth-room { width: 30px; height: 38px; border-radius: 12%; }
+
+.slider-container {
+    width: 100%;
+    padding: 4rem 2rem 0 2rem; 
+    display: flex;
+    justify-content: center;
+}
+
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 60rem;
+    margin-left: auto;        
+    margin-right: auto;      
+    margin-bottom: 60px;     
+}
+
+.slider {
+    display: flex;
+    aspect-ratio: 2.35/1;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    border-radius: 15px;
+    scrollbar-width: none; 
+}
+.slider::-webkit-scrollbar { display: none; }
+
+.slider img {
+    flex: 0 0 100%; 
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    object-fit: cover;
+}
+
+.slider-nav {
+    display: flex;
+    column-gap: 1rem;
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99 !important;
+    pointer-events: auto !important;
+}
+
+.slider-nav a {
+    width: 0.75rem; 
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0.3;              
+    transition: all ease 250ms;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+.slider-nav a:hover { opacity: 0.7; }
+.slider-nav a.active { opacity: 1 !important; transform: scale(1.2); background-color: #fff !important; }
+
+.home-content-stack {
+    flex: 1;                 
+    display: flex;
+    flex-direction: column;  
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    overflow-y: auto;        
+    padding-top: 20px; 
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes smoothLoad {
+    0% { opacity: 0; transform: scale(0.98) translateY(0px) 10ms ease; }
+    100% { opacity: 1; transform: scale(1) translateY(0) 10ms ease; }
+}
+
+/* --- DROP-DOWN SPOT SELECTION PICKER --- */
+.seat-picker-container {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    font-family: "Google Sans Flex", sans-serif;
+}
+
+.picker-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #253e68;
+    letter-spacing: 0.5px;
+}
+
+.picker-select {
+    width: 100%;
+    height: 48px;
+    padding: 0 15px;
+    font-size: 15px;
+    font-family: "Google Sans Flex", sans-serif;
+    font-weight: 500;
+    color: #253e68;
+    background-color: #fcfbf6;
+    border: 2px solid rgba(59, 113, 202, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23253e68' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px;
+}
+
+.picker-select:focus {
+    border-color: #3b71ca;
+    box-shadow: 0 0 0 4px rgba(59, 113, 202, 0.15);
+    background-color: #fff;
+}
+
+
+/* ==========================================================================
+   BOOKING PROCESS MODAL STYLES
+   ========================================================================== */
+
+/* 1. The Dark Overlay Background */
+.booking-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+}
+
+/* 2. The Invisible Wrapper (Holds the card + floating buttons) */
+.booking-modal-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 90%; 
+    max-width: 800px; 
+    gap: 20px; /* Space between the card and the footer buttons */
+}
+
+.booking-modal-wrapper input:focus {
+    outline: 2px solid #ffcc00 !important; /* This is a nice golden yellow */
+}
+
+/* 3. The Main Card (Side-by-side layout) */
+.booking-modal {
+    display: flex;
+    flex-direction: row; 
+    width: 100%; 
+    background: white;
+    border-radius: 20px;
+    overflow: hidden; /* Clips the inner panes to the rounded corners */
+    font-family: "Google Sans Flex", sans-serif;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* 4. The Left Pane (General Info) */
+.modal-left {
+    background: #e6e6e6;
+    flex: 1;
+    padding: 40px;
+    color: #333;
+}
+
+/* 5. The Right Pane (Contact Details) */
+.modal-right {
+    background: #4a7cce;
+    flex: 1;
+    padding: 40px;
+    color: white;
+}
+
+.modal-left h2, .modal-right h2 {
+    text-align: center;
+    margin-top: 0; /* Ensures the top of the box stays perfectly flush */
+    margin-bottom: 25px; /* Adds the breathing room below the title */
+}
+
+.modal-right h3 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 15px; /* This pushes the buttons 20 pixels down */
+    font-size: 22px;
+}
+
+/* ==========================================================================
+   INPUT FIELDS & FORMS
+   ========================================================================== */
+
+/* Standard Inputs */
+.booking-modal-wrapper input {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 8px 0 20px 0;
+    border: none;
+    border-radius: 8px;
+    box-sizing: border-box; /* Ensures padding doesn't make inputs overflow */
+    font-family: "Google Sans Flex", sans-serif;
+}
+
+.required-star {
+    color: #ff4d4d; /* A nice, bright, modern red. You can also just use 'red' */
+    margin-left: 3px; /* Optional: Adds a tiny bit of breathing room between the word and the star */
+}
+
+/* Side-by-side Name Fields */
+.name-row {
+    display: flex;
+    gap: 15px;
+}
+.field-half { 
+    flex: 1; 
+}
+
+/* Attached +63 Phone Box */
+.phone-input {
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden; 
+    margin: 8px 0 20px 0; 
+    background: white; 
+}
+
+.phone-input span { 
+    background: #d9d9d9; 
+    color: #333; 
+    padding: 10px 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #ccc; 
+}
+
+.phone-input input { 
+    flex: 1; 
+    margin: 0 !important; /* Overrides the standard input margin */
+    border-radius: 0 !important; /* Makes it sit flush against the grey box */
+    outline: none; 
+}
+
+/* Selection Buttons (Sex & Payment) */
+.sex-toggle button, .payment-options button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background: transparent;
+    cursor: pointer;
+    font-family: "Google Sans Flex", sans-serif;
+    margin-right: 10px;
+    transition: all 0.2s ease;
+}
+
+.modal-right .payment-options button {
+    border-color: white;
+    color: white;
+}
+
+.payment-options button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.payment-options button.active {
+    background-color: white !important;
+    color: #4a7cce !important; /* Changes the text to blue so it's readable on the white background */
+    font-weight: 600 !important;
+    /* transition: background 0.3s ease, transform 0.3s ease; */
+}
+
+.sex-toggle button.active {
+    border-color: #4a7cce; 
+    color: #4a7cce; /* Optional: Makes the text match the blue border */
+    font-weight: 600; /* Optional: Makes the selected text slightly bolder */
+    background-color: rgba(74, 124, 206, 0.05); /* Optional: Adds a super faint blue tint to the background */
+}
+
+/* 1. Turns the payment container into a flexbox and centers the buttons */
+.payment-options {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* 2. Removes the margin from the final button so the group is perfectly dead-center */
+.payment-options button:last-child {
+    margin-right: 0;
+}
+
+.sex-toggle {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10px; /* Gives it some breathing room at the bottom */
+}
+
+/* 2. Removes the margin from the 'Female' button so it is perfectly dead-center */
+.sex-toggle button:last-child {
+    margin-right: 0;
+}
+
+.error-text {
+    color: #ff4d4d;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: -15px; /* Pulls text up for standard inputs */
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* THE FIX: Adjusts the margin specifically for the complex containers so text doesn't overlap */
+.phone-input + .error-text,
+.sex-toggle + .error-text,
+.payment-options + .error-text {
+    margin-top: -5px; 
+}
+
+.error-border {
+    border: 2px solid #ff4d4d !important;
+}
+
+/* THE FIX: Removes the giant oval look and wraps the buttons tightly */
+.sex-toggle.error-border, .payment-options.error-border {
+    padding: 5px;
+    border-radius: 12px;
+}
+/* ==========================================================================
+   FLOATING FOOTER BUTTONS
+   ========================================================================== */
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.btn-cancel {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-family: "Google Sans Flex", sans-serif;
+    cursor: pointer;
+    padding: 10px 6px;
+    border-radius: 10px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-cancel:hover{
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px) !important;
+}
+
+.btn-proceed {
+    background: #4a7cce;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 18px; 
+    font-size: 16px;
+    font-family: "Google Sans Flex", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-proceed:hover {
+    background: #FFF8C4;
+    color:rgb(8, 6, 4) !important;
+    transform: translateY(-5px) !important;
+}
+
+
+/* ==========================================================================
+   PAGE 2: PAYMENT STEP STYLES
+   ========================================================================== */
+
+/* Centers everything perfectly on the left pane */
+.payment-step-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-logo {
+    width: 140px; /* Adjust this to fit your logo perfectly */
+    margin-bottom: 25px;
+}
+
+/* Creates a nice white rounded box around the QR code if it doesn't already have one */
+.qr-wrapper {
+    background: white;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.qr-wrapper img {
+    width: 160px; /* Size of the actual QR code */
+    display: block;
+}
+
+.scan-text {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Centers the content on the right pane */
+.payment-step-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reference-container {
+    width: 80%; /* Keeps the text from stretching all the way to the edges */
+    margin-bottom: 30px;
+}
+
+.reference-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.payment-note {
+    text-align: center;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.5;
+    opacity: 0.9;
+    margin-top: 15px;
+}
+
+/* The Hollow 'Done' Button */
+.btn-done {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 50px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: "Google Sans Flex", sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-done:hover {
+    background: white;
+    color: #4a7cce; /* Turns the text blue when the background fills with white */
+}
+
+/* ==========================================================================
+   PAGE 3: CONFIRMATION MODAL STYLES
+   ========================================================================== */
+
+/* The dark overlay that sits on top of everything else */
+.confirmation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75); /* Extra dark to fade out the previous page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* 2000 ensures it sits higher than the first modal (1000) */
+    font-family: "Google Sans Flex", sans-serif;
+}
+
+.confirmation-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 500px; /* Makes the box nice and compact */
+    gap: 15px;
+}
+
+/* The Blue Box */
+.confirmation-card {
+    background: #5b8ad6; /* Bright blue from your mockup */
+    width: 100%;
+    border-radius: 20px;
+    padding: 40px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.confirmation-card h2 {
+    font-size: 36px;
+    margin: 0 0 10px 0;
+}
+
+.screenshot-note {
+    font-size: 14px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* The White Details Box */
+.details-box {
+    background: #f4f6f9;
+    border-radius: 15px;
+    padding: 25px 30px;
+    color: #000;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.detail-row:last-child {
+    margin-bottom: 0;
+}
+
+.detail-label {
+    font-weight: 700;
+    color: #000;
+}
+
+.detail-value {
+    font-weight: 800; /* Extra bold for the values */
+    color: #000;
+}
+
+/* The Return Button */
+.btn-return {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-family: "Google Sans Flex", sans-serif;
+    cursor: pointer;
+    padding: 10px 0;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-return:hover {
+    opacity: 0.7;
+    transform: translateY(-5px) !important;
+}
+
+/* ==========================================================================
+   CANCEL DIALOG STYLES
+   ========================================================================== */
+
+/* The dark overlay */
+.cancel-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly darkens the screen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; 
+    font-family: "Google Sans Flex", sans-serif;
+}
+
+/* The popup box */
+.cancel-dialog {
+    background: #e6e6e6; /* Match your light grey from the left pane */
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.cancel-dialog h2 {
+    margin: 0 0 10px 0;
+    color: #1a1a1a;
+    font-size: 26px;
+}
+
+.cancel-dialog p {
+    margin: 0 0 30px 0;
+    color: #4d4d4d;
+    font-size: 15px;
+}
+
+/* The button container */
+.cancel-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Spaces the buttons evenly */
+}
+
+/* The Hollow "Close" Button */
+.btn-close-dialog {
+    background: transparent;
+    border: 1px solid #999;
+    color: #333;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-family: "Google Sans Flex", sans-serif;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-close-dialog:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+/* The Solid "Cancel Anyway" Button */
+.btn-cancel-anyway {
+    background: #4a7cce;
+    border: none;
+    color: white;
+    padding: 12px 10px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-family: "Google Sans Flex", sans-serif;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-cancel-anyway:hover {
+    background: #3a62a6; /* Slightly darker blue on hover */
+}
+
+/* ==========================================================================
+    ADJUSTMENTS
+   ========================================================================== */
+
+    /* Styles for dates that have already passed */
+.calendar-day.disabled-date {
+    opacity: 0.3;
+    cursor: not-allowed;
+    background: transparent;
+}
+
+/* Ensures hover effects don't play on disabled dates */
+.calendar-day.disabled-date:hover {
+    background: transparent;
+    transform: none;
+}
+
+/* ==========================================================================
+   TABLETS LANDSCAPE (Screens smaller than 1024px and wider than 768px)
+   ========================================================================== */
+@media (max-width: 1024px) and (min-width: 768px) {
+    html, body {
+        overflow: hidden !important;
+        height: 100% !important;
+    }
+
+    .container {
+        display: flex !important;
+        flex-direction: row !important; 
+        height: 100vh !important;
+        overflow: hidden !important;
+    }
+
+    .sidebar {
+        width: 180px !important; 
+        flex-shrink: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        align-items: center !important; 
+    }
+
+    .logo-container {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin-bottom: 60px !important; 
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+
+    .footer-logo {
+        width: 70px !important; 
+        max-width: 100% !important;
+        height: auto !important;
+        margin: 0 auto !important; 
+        display: block !important;
+    }
+
+    .sidebar.collapsed .logo-container {
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    .sidebar.collapsed { width: 60px !important; }
+
+    .nav-links li a {
+        width: 180px !important;
+        font-size: 14px !important;
+        padding: 12px 15px !important;
+    }
+
+    .main-content,
+    .home-content-stack {
+        flex: 1 !important;
+        height: 100vh !important;
+        overflow-y: auto !important; 
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding: 120px 24px 60px 24px !important; 
+        
+        display: flex !important; /* Forces landscape grid wrapping */
+        flex-direction: row !important; 
+        flex-wrap: wrap !important; 
+        justify-content: center !important;
+        align-content: flex-start !important;
+        gap: 30px !important; 
+        scrollbar-width: none !important;
+    }
+
+    .main-content::-webkit-scrollbar,
+    .home-content-stack::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .tagline {
+        font-size: 6vh !important;
+        word-spacing: normal !important;
+        line-height: 0.9 !important;
+    }
+
+    .location {
+        font-size: 1vh !important;
+        margin-top: 20px !important;
+    }
+
+    .focus-pod-card,
+    .power-bar-card,
+    .design-dock-card,
+    .think-spot-card,
+    .collab-nook-card,
+    .flow-row-card,
+    .sky-pod-card,
+    .sky-circle-card {
+        width: 100% !important; 
+        max-width: 550px !important; 
+        height: 250px !important;
+        display: block !important;
+        min-width: 0 !important; 
+        margin: 0 auto 40px auto !important;
+    }
+
+    .booking-spaces-title,
+    .collabnook-booking-spaces-title,
+    .focuspod-booking-spaces-title,
+    .powerbar-booking-spaces-title,
+    .thinkspot-booking-spaces-title,
+    .flowrow-booking-spaces-title,
+    .skycircle-booking-spaces-title,
+    .designdock-booking-spaces-title,
+    .skypod-booking-spaces-title {
+        font-size: 24px !important; 
+        left: 50% !important; 
+    }
+
+    .booking-space-price,
+    .skypod-booking-spaces-price,
+    .skycircle-booking-spaces-price {
+        font-size: 22px !important;
+        left: 53% !important;
+    }
+
+    .book-now-card {
+        left: 50% !important;
+        width: 42% !important;
+    }
+
+    .booking-wrapper {
+        display: flex !important;
+        flex-direction: column !important; 
+        justify-content: flex-start !important;
+        align-items: center !important;
+        width: 100% !important;
+        height: auto !important;
+        gap: 30px !important;
+        padding: 0 !important;
+    }
+
+    .booking-calendar {
+        width: 100% !important;
+        max-width: 500px !important; 
+        height: auto !important;
+        padding-bottom: 25px !important;
+        flex-shrink: 0 !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    }
+
+    .floor-plan-container {
+        width: 100% !important;
+        max-width: 550px !important; 
+        height: auto !important;
+        margin: 0 auto 40px auto !important; 
+        overflow: hidden !important;
+        flex-shrink: 0 !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    }
+
+    .floor-plan-map {
+        display: block !important;
+        transform: scale(0.62) !important; 
+        transform-origin: top center !important;
+        margin-top: 15px !important; 
+        margin-bottom: -200px !important; 
+        margin-left: -375px !important; 
+        left: 50% !important;
+        height: 600px !important;
+    }
+
+    .seat {
+        position: absolute !important;
+    }
+    .pantry, .cr, .sky-line-room { transform: none !important; transform-origin: initial !important; }
+
+    .process-booking-button {
+        width: 60% !important; 
+        height: 50px !important; 
+        min-height: 50px !important;
+        font-size: 15px; 
+        border-radius: 12px; 
+        margin: 25px auto 10px auto !important;
+        transform: none !important; 
+    }
+}
+
+/* ==========================================================================
+   TABLET PORTRAIT EXPLICIT FIX
+   ========================================================================== */
+@media (max-width: 1024px) and (min-width: 768px) and (orientation: portrait) {
+
+    /* html, body {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        height: auto !important;
+        min-height: 100vh !important;
+        position: static !important; 
+        -webkit-overflow-scrolling: touch !important;
+    }
+/* */
+    html, body {
+        -ms-overflow-style: none !important;  
+        scrollbar-width: none !important; 
+        -webkit-overflow-scrolling: touch !important; 
+    } */
+
+    .container {
+        display: block !important; 
+        height: auto !important;
+        min-height: 100vh !important;
+        overflow: visible !important; 
+    }
+
+    .main-content,
+    .home-content-stack {
+        display: block !important; 
+        padding-top: 100px !important;
+        height: auto !important;
+        overflow-y: auto !important; 
+        overflow-x: hidden !important;    
+    }
+
+    /* .main-content,
+    .home-content-stack {
+        display: block !important; 
+        padding-top: 100px !important;
+        height: 100vh !important; 
+        overflow-y: auto !important; 
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+    } */
+
+    .booking-spaces-title,
+    .focuspod-booking-spaces-title,
+    .powerbar-booking-spaces-title,
+    .thinkspot-booking-spaces-title,
+    .flowrow-booking-spaces-title {
+        font-size: 24px;       
+        line-height: 1.1;      
+        top: 24% !important;              
+        left: 58% !important;             
+    }
+
+    .booking-space-price {
+        font-size: 18px;       
+        top: 36%;              
+        left: 62% !important;             
+    }
+
+    .book-now-card {
+        left: 50% !important;
+        width: 40% !important;
+        height: 20% !important;
+        z-index: 50 !important; 
+        text-decoration: none !important;
+    }
+
+    .book-now-text {
+        font-family: "Google Sans Flex" !important;
+        font-weight: 600 !important;
+        position: relative !important; 
+        top: 14px !important;
+        left:73px !important;
+    }
+
+    .collabnook-booking-spaces-title {
+        position: absolute;
+        top: 24%;         
+        left: 55% !important; 
+        font-family: "Google Sans Flex";
+        font-size: 22px;
+        font-weight: 650;
+        word-spacing: 0px; 
+        letter-spacing: -0.5px;
+        color: rgb(8, 6, 4);
+        text-shadow: 2px 4px 45px rgba(0, 0, 0, 0.282); 
+        line-height: 1.1;  
+    }
+
+    .designdock-booking-spaces-title {
+        position: absolute;
+        top: 24%;         
+        left: 56% !important; 
+        font-family: "Google Sans Flex";
+        font-size: 22px;
+        font-weight: 650;
+        word-spacing: 0px; 
+        letter-spacing: -0.5px;
+        color: rgb(8, 6, 4);
+        text-shadow: 2px 4px 45px rgba(0, 0, 0, 0.282); 
+        line-height: 1.1;     
+    }
+
+    .skypod-booking-spaces-title {
+        position: absolute;
+        top: 24%;         
+        left: 61% !important; 
+        font-family: "Google Sans Flex";
+        font-size: 22px;
+        font-weight: 650;
+        word-spacing: 0px; 
+        letter-spacing: -0.5px;
+        color: rgb(8, 6, 4);
+        text-shadow: 2px 4px 45px rgba(0, 0, 0, 0.282); 
+        line-height: 1.1;   
+    }
+
+    .skycircle-booking-spaces-title {
+        position: absolute;
+        top: 24%;         
+        left: 59% !important; 
+        font-family: "Google Sans Flex";
+        font-size: 22px;
+        font-weight: 650;
+        word-spacing: 0px; 
+        letter-spacing: -0.5px;
+        color: rgb(8, 6, 4);
+        text-shadow: 2px 4px 45px rgba(0, 0, 0, 0.282); 
+        line-height: 1.1;     
+    }
+
+    .skypod-booking-spaces-price {
+        font-size: 18px;       
+        top: 38%;              
+        left: 60.5% !important; 
+    }
+
+    .skycircle-booking-spaces-price {
+        font-size: 18px;       
+        top: 38%;              
+        left: 60.5% !important; 
+    }
+
+    .learn-more-text {
+        top: 80%;
+        left: 65% !important;
+        font-size: 12px;
+    }
+
+    .homepage-contact-now-card,
+    .homepage-book-now-card {
+        display: inline-flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+        width: 135px !important;        
+        height: 38px !important;       
+        min-height: 48px !important;    
+        font-size: 13px !important;     
+        margin: 30px 0 0 0 !important;    
+    }
+
+    .hero-homepage-buttons {
+        display: flex !important;
+        flex-direction: row !important;        
+        justify-content: center !important; 
+        align-items: center !important;
+        gap: 20px !important;           
+        width: 100% !important;
+        margin-top: 40px !important;          
+        margin-bottom: 10px !important;
+    }
+
+
+    .homepage-book-now-card {
+        display: inline-flex !important;      
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 12px !important; 
+        width: 190px !important;
+        height: 55px !important;
+        margin: 0 !important;              
+        background-color: #c4eeff2d;
+        border: 2px solid #feffed;
+        color: #fffeec !important;
+        font-family: "Google Sans Flex", sans-serif;
+        font-size: 18px;
+        font-weight: 650;
+        text-decoration: none !important; 
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.267);
+        transition: all 0.3s ease;
+    }
+    .tagline {
+        font-size: 60px !important; 
+        line-height: 1.1 !important;
+        word-break: normal !important;
+        transition: font-size 0.3s ease !important; 
+    }
+
+    .sidebar.collapsed ~ .main-content .tagline,
+    .sidebar.collapsed ~ .home-content-stack .tagline {
+        font-size: 7vh !important; 
+    }
+    
+    .location {
+        font-size: 13px !important; 
+        padding: 0 20px !important; 
+        line-height: 1.5 !important;
+    }
+
+    .booking-wrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        min-height: 100vh !important;
+        padding-top: 120px !important;
+        padding-bottom: 20px !important; 
+        overflow: visible !important;
+        overflow-y: auto !important; 
+        overflow-x: hidden !important;
+    }
+
+    .booking-calendar{
+        width: 100% !important;
+        max-width: 550px !important; 
+        margin: 0 auto 5px auto !important; 
+    }
+    .floor-plan-container {
+        width: 100% !important;
+        max-width: 550px !important; 
+        margin: 0 auto 30px auto !important; 
+    }
+
+    .floor-plan-map {
+        margin-top: 20px !important; 
+        margin-bottom: -200px !important; 
+        margin-left: -365px !important;
+        transform: scale(0.86) !important; 
+    }
+
+    #bg-slider {
+        position: fixed !important; 
+        height: 100vh !important;
+        width: 100vw !important;
+    }
+
+    ::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    * {
+        -ms-overflow-style: none !important;  
+        scrollbar-width: none !important;  
+    }
+}
+
+/* ==========================================================================
+   MOBILE PHONES (Screens smaller than 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    html, body {
+        overflow: hidden !important;
+        height: 100dvh !important;
+        width: 100% !important;
+    }
+    html::-webkit-scrollbar, 
+    body::-webkit-scrollbar,
+    .container::-webkit-scrollbar {
+        display: none !important;         
+    }
+
+    #bg-slider {
+        position: fixed !important; 
+        height: 100vh !important;
+        width: 100vw !important;
+    }
+
+    .container {
+        flex-direction: column;
+        height: 100vh !important;
+        overflow: hidden !important; 
+    }
+
+    .sidebar {
+        width: 100% !important; 
+        height: auto; 
+        position: relative; 
+        padding: 10px 0;
+        z-index: 1000; 
+        flex-shrink: 0 !important;
+    }
+
+    .sidebar.collapsed {
+        height: 60px; 
+        width: 100% !important;
+        overflow: hidden; 
+    }
+
+    .menu-icon {
+        margin-top: 0 !important; 
+        margin-bottom: 0 !important;
+        padding-top: 0 !important; 
+        padding-left: 10px !important;
+    }
+    
+    .nav-links {
+        padding-top: 10px;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important; 
+        width: 100% !important;
+    }
+
+    .nav-links li a {
+        width: 90%;
+        border-radius: 10px; 
+        align-items: center; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease !important;
+    }
+
+    .nav-links li a:hover {
+        margin-left: 0 !important; 
+        background-color: #fcfbf6 !important; 
+        color: #3b71ca !important;
+        transform: scale(1.02) !important; 
+    }
+
+    .curve-top, .curve-bottom { display: none; }
+
+    .hero-section {
+        width: 100%;
+        padding-top: 5rem;       
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;    
+    }
+    
+    .main-content,
+    .home-content-stack {
+        padding: 30px 15px 120px 15px !important;       
+        gap: 20px; 
+        overflow-y: auto !important; 
+        overflow-x: hidden !important;
+        height: calc(100vh - 60px) !important; 
+        scrollbar-width: none !important;
+        min-height: 0 !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    .tagline {
+        font-size: 9vw;     
+        word-spacing: normal !important;
+        white-space: normal !important; 
+        line-height: 0.85 !important; 
+        text-shadow: 2px 2px 20px rgba(0,0,0,0.8); 
+    }
+    
+    .location {
+        font-family: "Google Sans Flex";
+        font-size: 1.8vw;      
+        letter-spacing: 1px;
+        margin-top: 15px;
+        line-height: 1.5;
+        padding: 0 10px;
+    }
+
+    .focus-pod-card,
+    .power-bar-card,
+    .design-dock-card,
+    .think-spot-card,
+    .collab-nook-card,
+    .flow-row-card,
+    .sky-pod-card,
+    .sky-circle-card {
+        width: 100%;       
+        height: 200px !important;      
+        min-width: 0;      
+        max-width: 400px;  
+        margin: 0 auto;    
+        flex-shrink: 0 !important;
+        position: relative !important; 
+        z-index: 1 !important;
+        cursor: pointer;
+    }
+
+    .booking-spaces-title,
+    .focuspod-booking-spaces-title,
+    .powerbar-booking-spaces-title,
+    .thinkspot-booking-spaces-title,
+    .flowrow-booking-spaces-title {
+        font-size: 22px;       
+        line-height: 1.1;      
+        top: 24%;              
+        left: 57.5%;             
+    }
+
+    .booking-space-price {
+        font-size: 18px;       
+        top: 36%;              
+        left: 63.5%;             
+    }
+
+    .book-now-card {
+        left: 53%;
+        width: 40%;
+        height: 20%;
+        z-index: 50 !important; 
+    }
+
+    .book-now-text {
+        font-family: "Google Sans Flex";
+        top: 25%;
+        left: 25%;
+        font-weight: 600;
+        color: #0c1018c2;
+        z-index: 51;
+    }   
+
+    .collabnook-booking-spaces-title {
+        position: absolute;
+        top: 24%;         
+        left: 53%; 
+        font-family: "Google Sans Flex";
+        font-size: 22px;
+        font-weight: 650;
+        word-spacing: 0px; 
+        letter-spacing: -0.5px;
+        color: rgb(8, 6, 4);
+        text-shadow: 2px 4px 45px rgba(0, 0, 0, 0.282); 
+        line-height: 1.1;  
+    }
+
+    .designdock-booking-spaces-title {
+        position: absolute;
+        top: 24%;         
+        left: 54%; 
+        font-family: "Google Sans Flex";
+        font-size: 22px;
+        font-weight: 650;
+        word-spacing: 0px; 
+        letter-spacing: -0.5px;
+        color: rgb(8, 6, 4);
+        text-shadow: 2px 4px 45px rgba(0, 0, 0, 0.282); 
+        line-height: 1.1;     
+    }
+
+    .skypod-booking-spaces-title {
+        position: absolute;
+        top: 24%;         
+        left: 61.5%; 
+        font-family: "Google Sans Flex";
+        font-size: 22px;
+        font-weight: 650;
+        word-spacing: 0px; 
+        letter-spacing: -0.5px;
+        color: rgb(8, 6, 4);
+        text-shadow: 2px 4px 45px rgba(0, 0, 0, 0.282); 
+        line-height: 1.1;   
+    }
+
+    .skycircle-booking-spaces-title {
+        position: absolute;
+        top: 24%;         
+        left: 57.5%; 
+        font-family: "Google Sans Flex";
+        font-size: 22px;
+        font-weight: 650;
+        word-spacing: 0px; 
+        letter-spacing: -0.5px;
+        color: rgb(8, 6, 4);
+        text-shadow: 2px 4px 45px rgba(0, 0, 0, 0.282); 
+        line-height: 1.1;     
+    }
+
+    .skypod-booking-spaces-price {
+        font-size: 18px;       
+        top: 38%;              
+        left: 62%; 
+    }
+
+    .skycircle-booking-spaces-price {
+        font-size: 18px;       
+        top: 38%;              
+        left: 60.5%; 
+    }
+
+    .learn-more-text {
+        top: 80%;
+        left: 65.8%;
+        font-size: 12px;
+    }
+
+    /* Mobile Modal Overrides */
+    .modal-box {
+        padding: 24px 20px 20px 20px !important;
+    }
+
+    .card-carousel-track {
+        height: 260px !important; 
+    }
+
+    #modal-title { font-size: 32px !important; }
+    #modal-price { font-size: 20px !important; }
+    #modal-desc { font-size: 15px !important; }
+
+    .booking-wrapper {
+        flex-direction: column !important; 
+        justify-content: flex-start !important; 
+        height: auto !important;                               
+        padding-top: 100px !important;    
+        padding-bottom: 50px;
+        gap: 20px;                          
+    }
+
+    .main-content:has(.booking-wrapper) {
+        height: calc(100vh - 60px) !important;
+        overflow-y: auto !important; 
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding-bottom: 120px !important; 
+    }
+
+    .container { overflow-y: auto !important; }
+
+    .booking-calendar {
+        width: 100% !important;
+        max-width: 500px !important;
+        margin: 0 auto !important; 
+        padding-bottom: 20px !important; 
+        height: auto !important; 
+        flex-shrink: 0 !important; 
+    }
+    
+    #back-arrow {
+        top: 20px;
+        right: 20px;
+        z-index: 1000;      
+        position: fixed;    
+        left: auto;
+    }
+
+    .floor-plan-container {
+        width: 100% !important;
+        max-width: 500px !important;
+        margin: 0 auto 40px auto !important; 
+        height: auto !important;
+        overflow: hidden !important;
+    }
+
+    .floor-plan-map {
+        display: block !important;
+        transform: scale(0.58) !important;            
+        transform-origin: top center !important;      
+        margin-top: 13px !important; 
+        margin-bottom: -320px !important;            
+        margin-left: -375px!important;              
+        left: 50% !important;
+        height: 600px !important;
+    }
+
+    .home-content-stack {
+        height: auto !important; 
+        min-height: calc(100vh - 60px) !important; 
+        overflow-y: auto !important;        
+        justify-content: flex-start !important;
+        padding-top: 10px !important;
+        padding-bottom: 40px !important;    
+    }
+
+    .slider-nav a { width: 8px !important; height: 8px !important; }
+    .slider-container { padding-top: 15px !important; padding-bottom: 30px !important; }
+    .slider { display: flex; aspect-ratio: 4/3; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; border-radius: 8px; scrollbar-width: none; }
+    .hero-btn-group { margin-top: 25px !important; margin-bottom: 20px !important; }
+
+    .homepage-contact-now-card,
+    .homepage-book-now-card {
+        display: inline-flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+        width: 135px !important;        
+        height: 38px !important;       
+        min-height: 48px !important;    
+        font-size: 13px !important;     
+        margin: 30px 5px 0 5px !important; 
+    }
+
+    .process-booking-button {
+        width: 60% !important; 
+        height: 50px !important; 
+        min-height: 50px !important;
+        font-size: 15px; 
+        border-radius: 12px; 
+        margin: 25px auto 10px auto !important;
+        transform: none !important; 
+    }
+
+    /* ==========================================================================
+       MOBILE RESPONSIVE BOOKING PROCESS MODAL
+       ========================================================================== */
+    .booking-modal-overlay {
+        align-items: flex-start !important; 
+        overflow-y: auto !important;
+        /* THE FIX: Added 120px of invisible space to the bottom so the buttons clear the browser menu! */
+        padding: 40px 0 120px 0 !important; 
+        
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important; 
+        -ms-overflow-style: none !important;
+    }
+
+    .booking-modal-overlay::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .booking-modal-wrapper {
+        margin: auto !important;
+        width: 92% !important;
+    }
+
+    .booking-modal {
+        flex-direction: column !important; /* Stacks General Info & Contact Details */
+        border-radius: 20px !important;
+    }
+
+    .modal-left, .modal-right {
+        padding: 30px 20px !important; /* Reduces huge desktop padding */
+    }
+
+    .modal-left h2, .modal-right h2 {
+        font-size: 24px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .modal-right h3 {
+        font-size: 18px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .phone-input span {
+        padding: 10px !important;
+    }
+
+    .payment-options button, .sex-toggle button {
+        font-size: 14px !important;
+        padding: 10px 15px !important;
+    }
+
+    .btn-proceed {
+        width: auto !important;
+        padding: 12px 25px !important;
+        margin: 0 !important; /* Overrides the previous desktop centering trick */
+    }
+
+    .btn-cancel {
+        padding: 10px 0 !important;
+    }
+
+    .screenshot-note {
+        font-size: 11px;
+        margin-bottom: 30px;
+        line-height: 1.5;
+    }
+
+    .details-box {
+        background: #f4f6f9;
+        border-radius: 10px;
+        padding: 25px 20px;
+        color: #414141;
+    }
+    .detail-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        font-size: 12px;
+        font-weight: normal !important;
+    }
+}
